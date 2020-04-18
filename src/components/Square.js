@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
 import './Square.css'
 
 const Square = (props) => {
@@ -10,6 +11,7 @@ const Square = (props) => {
 
   return <button
     className="square"
+    onClick={props.onClickCallback(props.id)}
   >
     {props.value}
   </button>
