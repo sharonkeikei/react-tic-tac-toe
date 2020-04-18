@@ -19,7 +19,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
         )
       })
     })
-    console.log(allSquare);
+    //console.log(allSquare);
     return (allSquare)
 };
 

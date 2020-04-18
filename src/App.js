@@ -34,8 +34,28 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-  const updateSquare = () => {
-  
+  const updateSquare = (chosenSquare) => {
+    // 2D array -> array inside array (loop thru it to find the square we are looking for)
+    const newSquares = [...squares];
+    for (let checkRow = 0; checkRow < newSquares.length; checkRow++) {
+      for (let checkCol = 0; checkCol < newSquares[checkRow].length; checkCol++){
+        // find that square with the id
+        if (newSquares[checkRow][checkCol].id === chosenSquare) {
+          if (newSquares[checkRow][checkCol].value === "") {
+            newSquares[checkRow][checkCol].value = currentPlayer;
+            console.log(newSquares[checkRow][checkCol]);
+          }
+        }
+      }
+    }
+    //set the state of the board
+    setSquares(newSquares);
+    //set the state of the turn
+    if (currentPlayer === PLAYER_1){
+      setNextPlayer(PLAYER_2);
+    } else {
+      setNextPlayer(PLAYER_1);
+    }
   } 
   
 
@@ -49,6 +69,8 @@ const App = () => {
     // Complete in Wave 4
   }
 
+
+  // to print out the current player
   let status = `Next Player is ${currentPlayer}`
 
   return (
