@@ -44,6 +44,8 @@ const App = () => {
           if (newSquares[checkRow][checkCol].value === "") {
             newSquares[checkRow][checkCol].value = currentPlayer;
             console.log(newSquares[checkRow][checkCol]);
+          } else { 
+            return;
           }
         }
       }
