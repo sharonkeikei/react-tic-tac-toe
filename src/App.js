@@ -29,7 +29,7 @@ const generateSquares = () => {
 const App = () => {
 
   const [squares, setSquares] = useState(generateSquares());
-  const [player1isNext, setPlayer1Next] = useState(true);
+  const [currentPlayer, setNextPlayer] = useState(PLAYER_1);
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -49,7 +49,7 @@ const App = () => {
     // Complete in Wave 4
   }
 
-  let status = `Next Player is ${player1isNext? "X": "O"}`
+  let status = `Next Player is ${currentPlayer}`
 
   return (
     <div className="App">
