@@ -27,16 +27,16 @@ const generateSquares = () => {
 
 const App = () => {
 
-  const [squares, setSquares] = useState(generateSquares());
-  const [currentPlayer, setNextPlayer] = useState(PLAYER_1);
-  const [numOfSquareOccupied, setOccupySquare] = useState(1);
-  const [currentWinner, setWinner] = useState(null);
+  const [squares, setSquares] = useState(generateSquares()); // TO DO: initial value, pass in a value not a function
+  const [currentPlayer, setNextPlayer] = useState(PLAYER_1); // TO DO: format should be name, setName
+  const [numOfSquareOccupied, setOccupySquare] = useState(1); //TO DO: name shoudl be in format of name, setName
+  const [currentWinner, setWinner] = useState(null); // TO DO: format should be name, setName
   
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-  const updateSquare = (chosenSquare) => {
+  const updateSquare = (rowIndex, colIndex) => {
     // 2D array -> array inside array (loop thru it to find the square we are looking for)
     const newSquares = [...squares];
     // cease responding to clicks on the board if the game has a winner.
@@ -44,12 +44,12 @@ const App = () => {
       return;
     }
 
-    for (let checkRow = 0; checkRow < newSquares.length; checkRow++) {
-      for (let checkCol = 0; checkCol < newSquares[checkRow].length; checkCol++){
-        // find that square with the id
-        if (newSquares[checkRow][checkCol].id === chosenSquare) {
-          if (newSquares[checkRow][checkCol].value === "") {
-            newSquares[checkRow][checkCol].value = currentPlayer;
+    // for (let checkRow = 0; checkRow < newSquares.length; checkRow++) {
+    //   for (let checkCol = 0; checkCol < newSquares[checkRow].length; checkCol++){
+    //     // find that square with the id
+    //     if (newSquares[checkRow][checkCol].id === chosenSquare) {
+          if (newSquares[rowIndex][colIndex].value === "") {
+            newSquares[rowIndex][colIndex].value = currentPlayer;
             setOccupySquare(numOfSquareOccupied + 1);
             console.log(numOfSquareOccupied);
             //console.log(`numofSquare = ${numOfSquareOccupied}`)
@@ -58,14 +58,15 @@ const App = () => {
             // if the square already is occupied, just return as it is.
             return;
           }
-        }
-      }
-    }
+        
+      
+    
 
     //set the state of the board
     setSquares(newSquares);
     //check for winner
     const winner = checkForWinner(newSquares);
+    // TO DO: checking for winner should be in check for winner function
     if (winner!== null) {
       setWinner(winner)
     } else {
@@ -75,6 +76,7 @@ const App = () => {
       }
     }
     //set the state of the turn
+    // TO DO: Pull this out to a function, next player
     if (currentPlayer === PLAYER_1){
       setNextPlayer(PLAYER_2);
     } else {
@@ -120,6 +122,7 @@ const App = () => {
   }
 
 
+  // TO DO: Put this into next player function
   // to print out the next player or winner player
   let status 
   if (currentWinner === null) {
