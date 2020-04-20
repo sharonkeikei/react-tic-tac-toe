@@ -29,7 +29,7 @@ const generateSquares = () => {
 const App = () => {
 
   const blankBoard = generateSquares();
-  const [squares, setSquares] = useState(blankBoard); // TO DO: initial value, pass in a value not a function
+  const [squares, setSquares] = useState(blankBoard); 
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1); 
   const [numOfSquareOccupied, setNumOfSquareOccupied] = useState(1);
   const [currentWinner, setCurrentWinner] = useState(null);
